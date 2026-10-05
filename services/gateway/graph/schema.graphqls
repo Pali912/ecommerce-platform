@@ -1,0 +1,29 @@
+﻿type User {
+  id: ID!
+  email: String!
+  name: String!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  description: String!
+  priceCents: Int!
+  currency: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Query {
+  product(id: ID!): Product
+  products(limit: Int = 20, offset: Int = 0): [Product!]!
+}
+
+type Mutation {
+  register(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createProduct(name: String!, description: String, priceCents: Int!): Product!
+}
